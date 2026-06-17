@@ -19,15 +19,15 @@ export default function Nav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl"
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg"
       style={{
-        backgroundColor: "rgba(13,10,20,0.85)",
-        borderBottom: "1px solid rgba(192,132,252,0.12)",
+        backgroundColor: "rgba(247,242,232,0.94)",
+        borderBottom: "1px solid #E8DFC8",
       }}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/">
-          <OsmozLogo variant="horizontal" size={38} />
+          <OsmozLogo variant="wordmark" theme="light" size={22} />
         </Link>
 
         {/* Desktop nav */}
@@ -38,8 +38,8 @@ export default function Nav() {
               href={l.href}
               className="text-sm transition-colors duration-200"
               style={{
-                color: pathname === l.href ? "#F0E6FF" : "#9B88B0",
-                fontFamily: "var(--font-inter), sans-serif",
+                color: pathname === l.href ? "#1A1A18" : "#8A8070",
+                fontFamily: "var(--font-jost), sans-serif",
                 fontWeight: 400,
               }}
             >
@@ -51,18 +51,19 @@ export default function Nav() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200"
+            className="px-5 py-2 text-sm font-medium transition-all duration-200"
             style={{
-              backgroundColor: "#7B2FBE",
-              color: "#0D0A14",
-              fontFamily: "var(--font-outfit), sans-serif",
-              fontWeight: 600,
+              backgroundColor: "#2C4A3E",
+              color: "#F7F2E8",
+              fontFamily: "var(--font-jost), sans-serif",
+              fontWeight: 500,
+              borderRadius: 6,
             }}
             onMouseEnter={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = "#C084FC";
+              (e.currentTarget as HTMLElement).style.backgroundColor = "#1A1A18";
             }}
             onMouseLeave={(e) => {
-              (e.target as HTMLElement).style.backgroundColor = "#7B2FBE";
+              (e.currentTarget as HTMLElement).style.backgroundColor = "#2C4A3E";
             }}
           >
             Travailler ensemble
@@ -78,21 +79,21 @@ export default function Nav() {
           <span
             className="block w-5 h-0.5 transition-all duration-300"
             style={{
-              backgroundColor: "#F0E6FF",
+              backgroundColor: "#1A1A18",
               transform: open ? "rotate(45deg) translate(2px, 5px)" : "none",
             }}
           />
           <span
             className="block w-5 h-0.5 transition-all duration-300"
             style={{
-              backgroundColor: "#F0E6FF",
+              backgroundColor: "#1A1A18",
               opacity: open ? 0 : 1,
             }}
           />
           <span
             className="block w-5 h-0.5 transition-all duration-300"
             style={{
-              backgroundColor: "#F0E6FF",
+              backgroundColor: "#1A1A18",
               transform: open ? "rotate(-45deg) translate(2px, -5px)" : "none",
             }}
           />
@@ -108,17 +109,21 @@ export default function Nav() {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
             className="md:hidden px-6 pb-6 pt-2 flex flex-col gap-4"
-            style={{ borderTop: "1px solid rgba(192,132,252,0.08)" }}
+            style={{
+              backgroundColor: "#F7F2E8",
+              borderTop: "1px solid #E8DFC8",
+            }}
           >
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="text-base py-1"
                 style={{
-                  color: pathname === l.href ? "#F0E6FF" : "#9B88B0",
-                  fontFamily: "var(--font-inter), sans-serif",
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontWeight: 600,
+                  fontSize: 22,
+                  color: pathname === l.href ? "#1A1A18" : "#8A8070",
                 }}
               >
                 {l.label}
@@ -127,11 +132,12 @@ export default function Nav() {
             <Link
               href="/contact"
               onClick={() => setOpen(false)}
-              className="mt-2 px-5 py-2.5 rounded-lg text-sm font-semibold text-center"
+              className="mt-2 px-5 py-3 text-sm font-medium text-center"
               style={{
-                backgroundColor: "#7B2FBE",
-                color: "#0D0A14",
-                fontFamily: "var(--font-outfit), sans-serif",
+                backgroundColor: "#2C4A3E",
+                color: "#F7F2E8",
+                fontFamily: "var(--font-jost), sans-serif",
+                borderRadius: 6,
               }}
             >
               Travailler ensemble

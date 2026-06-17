@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import OsmozLogo from "./OsmozLogo";
 
@@ -10,48 +12,32 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        backgroundColor: "rgba(13,10,20,0.98)",
-        borderTop: "1px solid rgba(192,132,252,0.08)",
-      }}
-    >
+    <footer style={{ backgroundColor: "#111110", borderTop: "1px solid rgba(212,168,83,0.1)" }}>
       <div className="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div className="flex flex-col gap-3">
-          <OsmozLogo variant="typo" size={22} />
-          <p
-            className="text-sm"
-            style={{
-              color: "#9B88B0",
-              fontFamily: "var(--font-inter), sans-serif",
-              fontWeight: 300,
-            }}
-          >
-            hello@osmoz-video.fr
+          <OsmozLogo variant="wordmark" theme="dark" size={22} />
+          <p style={{ fontSize: 12, color: "#3a3a38", fontFamily: "var(--font-jost), sans-serif", fontWeight: 400 }}>
+            hello@osmoz.media
           </p>
-          <p
-            className="text-xs"
-            style={{
-              color: "#9B88B0",
-              fontFamily: "var(--font-inter), sans-serif",
-              fontWeight: 300,
-            }}
-          >
+          <p style={{ fontSize: 12, color: "#3a3a38", fontFamily: "var(--font-jost), sans-serif", fontWeight: 400 }}>
             © {new Date().getFullYear()} Osmoz — Tous droits réservés
           </p>
         </div>
 
-        <nav className="flex gap-6">
+        <nav className="flex gap-6 flex-wrap">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm transition-colors duration-200 hover:text-mist"
               style={{
-                color: "#9B88B0",
-                fontFamily: "var(--font-inter), sans-serif",
+                fontSize: 13,
+                color: "#3a3a38",
+                fontFamily: "var(--font-jost), sans-serif",
                 fontWeight: 400,
+                transition: "color 0.2s",
               }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#8A8070"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#3a3a38"; }}
             >
               {l.label}
             </Link>

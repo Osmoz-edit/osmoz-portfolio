@@ -4,13 +4,13 @@ import { motion, type Variants } from "framer-motion";
 import Link from "next/link";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
+  hidden: { opacity: 0, y: 22 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 const stagger: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.08 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const plans = [
@@ -20,7 +20,7 @@ const plans = [
     badge: "Pour démarrer",
     featured: false,
     items: [
-      "4 vidéos YouTube / mois",
+      "4 vidéos YouTube montées / mois",
       "Jusqu'à 30 min de rushes / vidéo",
       "Sous-titres FR inclus",
       "Coupes & rythme pédagogique",
@@ -35,7 +35,7 @@ const plans = [
     badge: "Le plus choisi",
     featured: true,
     items: [
-      "4 vidéos YouTube / mois",
+      "4 vidéos YouTube montées / mois",
       "Jusqu'à 45 min de rushes / vidéo",
       "Sous-titres FR inclus",
       "8 Reels / Shorts extraits",
@@ -51,14 +51,14 @@ const plans = [
     badge: "Machine à contenu",
     featured: false,
     items: [
-      "6 vidéos YouTube / mois",
+      "6 vidéos YouTube montées / mois",
       "Jusqu'à 60 min de rushes / vidéo",
       "Sous-titres FR + EN",
       "12 Reels / Shorts extraits",
       "Habillage avancé + motion titles",
       "Livraison en 48h",
       "Révisions illimitées",
-      "1 VSL par mois",
+      "1 VSL ou vidéo de vente / mois",
       "Appel stratégie 30 min / mois",
     ],
   },
@@ -92,23 +92,9 @@ const testimonials = [
 export default function ServicesPage() {
   return (
     <>
-      {/* HERO COMPACT */}
-      <section
-        className="pt-32 pb-16 relative"
-        style={{ backgroundColor: "#0D0A14" }}
-      >
-        <div
-          className="absolute top-0 left-1/2 pointer-events-none"
-          style={{
-            width: 500,
-            height: 400,
-            borderRadius: "50%",
-            background: "radial-gradient(circle, rgba(123,47,190,0.25) 0%, transparent 70%)",
-            filter: "blur(100px)",
-            transform: "translateX(-50%)",
-          }}
-        />
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
+      {/* HERO */}
+      <section className="pt-32 pb-16" style={{ backgroundColor: "#F7F2E8" }}>
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -117,21 +103,45 @@ export default function ServicesPage() {
           >
             <motion.p
               variants={fadeUp}
-              className="text-xs uppercase tracking-widest flex items-center gap-3"
-              style={{ color: "#C084FC", fontFamily: "var(--font-outfit), sans-serif", fontWeight: 500 }}
+              style={{
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: 11,
+                fontWeight: 400,
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "#D4A853",
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+              }}
             >
-              <span style={{ display: "inline-block", width: 24, height: 1, backgroundColor: "#C084FC" }} />
+              <span style={{ display: "inline-block", width: 20, height: 1, backgroundColor: "#D4A853" }} />
               Services & Forfaits
             </motion.p>
             <motion.h1
               variants={fadeUp}
-              style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 900, fontSize: "clamp(38px, 5vw, 72px)", letterSpacing: "-0.03em", color: "#F0E6FF", lineHeight: 1.1 }}
+              style={{
+                fontFamily: "var(--font-cormorant), serif",
+                fontWeight: 600,
+                fontSize: "clamp(38px, 5vw, 72px)",
+                letterSpacing: "-0.02em",
+                lineHeight: 1.05,
+                color: "#1A1A18",
+              }}
             >
-              Choisis ton rythme de publication
+              Choisis ton rythme<br />
+              <em style={{ color: "#2C4A3E" }}>de publication</em>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              style={{ fontFamily: "var(--font-inter), sans-serif", fontWeight: 300, fontSize: 17, lineHeight: 1.7, color: "#9B88B0", maxWidth: 500 }}
+              style={{
+                fontFamily: "var(--font-jost), sans-serif",
+                fontWeight: 300,
+                fontSize: 16,
+                lineHeight: 1.7,
+                color: "#8A8070",
+                maxWidth: 500,
+              }}
             >
               Trois forfaits conçus pour les infopreneurs qui veulent publier régulièrement sans s&apos;épuiser au montage.
             </motion.p>
@@ -140,75 +150,82 @@ export default function ServicesPage() {
       </section>
 
       {/* FORFAITS */}
-      <section className="py-20 relative" style={{ backgroundColor: "#0D0A14" }}>
-        <div className="light-line absolute top-0 left-0 right-0" />
+      <section className="py-20" style={{ backgroundColor: "#2C4A3E" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-100px" }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6"
           >
             {plans.map((plan) => (
               <motion.div
                 key={plan.name}
                 variants={fadeUp}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="relative rounded-2xl p-8 flex flex-col gap-6"
+                whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                className="relative flex flex-col gap-6 p-8"
                 style={
                   plan.featured
-                    ? { backgroundColor: "#7B2FBE", border: "none" }
-                    : { backgroundColor: "#1A1028", border: "1px solid rgba(192,132,252,0.1)" }
+                    ? {
+                        backgroundColor: "#1A1A18",
+                        border: "1px solid #D4A853",
+                        borderRadius: 8,
+                      }
+                    : {
+                        backgroundColor: "rgba(26,26,24,0.35)",
+                        border: "1px solid rgba(212,168,83,0.15)",
+                        borderRadius: 8,
+                      }
                 }
               >
                 {/* Badge */}
-                <div className="flex items-start justify-between">
-                  <div className="flex flex-col gap-1">
-                    <span
-                      style={{
-                        fontFamily: "var(--font-outfit), sans-serif",
-                        fontWeight: 700,
-                        fontSize: 20,
-                        color: plan.featured ? "#F0E6FF" : "#F0E6FF",
-                      }}
-                    >
-                      {plan.name}
-                    </span>
-                    <span
-                      className="text-xs uppercase tracking-widest px-3 py-1 rounded-full self-start mt-1"
-                      style={{
-                        backgroundColor: plan.featured ? "rgba(240,230,255,0.15)" : "rgba(123,47,190,0.15)",
-                        color: plan.featured ? "#F0E6FF" : "#C084FC",
-                        fontFamily: "var(--font-outfit), sans-serif",
-                        fontWeight: 500,
-                      }}
-                    >
-                      {plan.badge}
-                    </span>
-                  </div>
+                <div className="flex flex-col gap-2">
+                  <span
+                    style={{
+                      fontFamily: "var(--font-cormorant), serif",
+                      fontWeight: 600,
+                      fontSize: 22,
+                      color: "#F7F2E8",
+                    }}
+                  >
+                    {plan.name}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono), monospace",
+                      fontSize: 10,
+                      fontWeight: 500,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "#D4A853",
+                    }}
+                  >
+                    {plan.badge}
+                  </span>
                 </div>
 
                 {/* Prix */}
                 <div>
                   <span
                     style={{
-                      fontFamily: "var(--font-outfit), sans-serif",
-                      fontWeight: 800,
-                      fontSize: 40,
-                      color: plan.featured ? "#F0E6FF" : "#F0E6FF",
-                      letterSpacing: "-0.03em",
+                      fontFamily: "var(--font-cormorant), serif",
+                      fontWeight: 600,
+                      fontSize: 62,
+                      color: plan.featured ? "#D4A853" : "#F7F2E8",
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1,
                     }}
                   >
                     {plan.price}
                   </span>
                   <span
                     style={{
-                      fontFamily: "var(--font-inter), sans-serif",
+                      fontFamily: "var(--font-jost), sans-serif",
                       fontWeight: 300,
-                      fontSize: 14,
-                      color: plan.featured ? "rgba(240,230,255,0.7)" : "#9B88B0",
-                      marginLeft: 4,
+                      fontSize: 13,
+                      color: "rgba(247,242,232,0.5)",
+                      marginLeft: 6,
                     }}
                   >
                     / mois
@@ -219,34 +236,16 @@ export default function ServicesPage() {
                 <ul className="flex flex-col gap-3 flex-1">
                   {plan.items.map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        className="flex-shrink-0 mt-0.5"
-                      >
-                        <circle
-                          cx="8"
-                          cy="8"
-                          r="7"
-                          fill={plan.featured ? "rgba(240,230,255,0.15)" : "rgba(123,47,190,0.2)"}
-                        />
-                        <path
-                          d="M5 8l2 2 4-4"
-                          stroke={plan.featured ? "#F0E6FF" : "#C084FC"}
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0" style={{ marginTop: 3 }}>
+                        <path d="M2.5 7l3 3 6-6" stroke="#D4A853" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                       <span
                         style={{
-                          fontFamily: "var(--font-inter), sans-serif",
+                          fontFamily: "var(--font-jost), sans-serif",
                           fontWeight: 300,
-                          fontSize: 14,
+                          fontSize: 13,
                           lineHeight: 1.5,
-                          color: plan.featured ? "rgba(240,230,255,0.9)" : "#9B88B0",
+                          color: "rgba(247,242,232,0.75)",
                         }}
                       >
                         {item}
@@ -258,11 +257,23 @@ export default function ServicesPage() {
                 {/* CTA */}
                 <Link
                   href="/contact"
-                  className="w-full py-3.5 rounded-xl text-sm font-semibold text-center transition-all duration-200 block"
+                  className="block w-full py-3.5 text-sm text-center transition-all duration-200"
                   style={
                     plan.featured
-                      ? { backgroundColor: "#F0E6FF", color: "#7B2FBE", fontFamily: "var(--font-outfit), sans-serif" }
-                      : { backgroundColor: "rgba(123,47,190,0.15)", color: "#C084FC", border: "1px solid rgba(192,132,252,0.2)", fontFamily: "var(--font-outfit), sans-serif" }
+                      ? {
+                          backgroundColor: "#D4A853",
+                          color: "#1A1A18",
+                          fontFamily: "var(--font-jost), sans-serif",
+                          fontWeight: 500,
+                          borderRadius: 6,
+                        }
+                      : {
+                          border: "1px solid rgba(212,168,83,0.3)",
+                          color: "#D4A853",
+                          fontFamily: "var(--font-jost), sans-serif",
+                          fontWeight: 400,
+                          borderRadius: 6,
+                        }
                   }
                 >
                   Choisir ce forfait
@@ -274,56 +285,91 @@ export default function ServicesPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-24 relative" style={{ backgroundColor: "#1A1028" }}>
-        <div className="light-line absolute top-0 left-0 right-0" />
+      <section className="py-24" style={{ backgroundColor: "#E8DFC8" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col gap-16"
           >
-            <motion.div variants={fadeUp} className="flex flex-col gap-3">
-              <p className="text-xs uppercase tracking-widest" style={{ color: "#C084FC", fontFamily: "var(--font-outfit), sans-serif", fontWeight: 500 }}>
-                — Comment ça marche
+            <motion.div variants={fadeUp} className="flex flex-col gap-4">
+              <p
+                style={{
+                  fontFamily: "var(--font-mono), monospace",
+                  fontSize: 11,
+                  fontWeight: 400,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "#D4A853",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                }}
+              >
+                <span style={{ display: "inline-block", width: 20, height: 1, backgroundColor: "#D4A853" }} />
+                Comment ça marche
               </p>
-              <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em", color: "#F0E6FF" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(28px, 3.5vw, 44px)",
+                  letterSpacing: "-0.02em",
+                  color: "#1A1A18",
+                }}
+              >
                 4 étapes, zéro friction
               </h2>
             </motion.div>
 
-            <motion.div variants={stagger} className="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
-              {/* Ligne de connexion */}
-              <div
-                className="hidden md:block absolute top-6 left-0 right-0"
-                style={{
-                  height: 1,
-                  background: "linear-gradient(90deg, #7B2FBE, rgba(123,47,190,0.1))",
-                  zIndex: 0,
-                }}
-              />
+            <motion.div
+              variants={stagger}
+              className="grid grid-cols-1 md:grid-cols-4"
+              style={{ borderTop: "1px solid rgba(26,26,24,0.1)" }}
+            >
               {steps.map((step, i) => (
                 <motion.div
                   key={step.n}
                   variants={fadeUp}
-                  className="relative z-10 flex flex-col gap-4 p-6"
+                  className="flex flex-col gap-4 p-6 md:py-8"
+                  style={{
+                    borderRight: i < 3 ? "1px solid rgba(26,26,24,0.1)" : "none",
+                    borderBottom: "1px solid rgba(26,26,24,0.1)",
+                  }}
                 >
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold"
+                  <span
                     style={{
-                      backgroundColor: i === 0 ? "#7B2FBE" : "#2D1F42",
-                      border: i === 0 ? "none" : "1px solid rgba(192,132,252,0.2)",
-                      color: "#F0E6FF",
-                      fontFamily: "var(--font-outfit), sans-serif",
+                      fontFamily: "var(--font-cormorant), serif",
+                      fontWeight: 600,
+                      fontSize: 64,
+                      lineHeight: 1,
+                      color: "transparent",
+                      WebkitTextStroke: "1px rgba(26,26,24,0.15)",
                     }}
                   >
                     {step.n}
-                  </div>
-                  <h3 style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 700, fontSize: 18, color: "#F0E6FF" }}>
+                  </span>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-cormorant), serif",
+                      fontWeight: 600,
+                      fontSize: 20,
+                      color: "#1A1A18",
+                    }}
+                  >
                     {step.title}
                   </h3>
-                  <p style={{ fontFamily: "var(--font-inter), sans-serif", fontWeight: 300, fontSize: 14, lineHeight: 1.7, color: "#9B88B0" }}>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-jost), sans-serif",
+                      fontWeight: 300,
+                      fontSize: 13,
+                      lineHeight: 1.7,
+                      color: "#8A8070",
+                    }}
+                  >
                     {step.body}
                   </p>
                 </motion.div>
@@ -334,21 +380,41 @@ export default function ServicesPage() {
       </section>
 
       {/* TÉMOIGNAGES */}
-      <section className="py-24 relative" style={{ backgroundColor: "#0D0A14" }}>
-        <div className="light-line absolute top-0 left-0 right-0" />
+      <section className="py-24" style={{ backgroundColor: "#F7F2E8" }}>
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             variants={stagger}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col gap-14"
           >
-            <motion.div variants={fadeUp} className="flex flex-col gap-3">
-              <p className="text-xs uppercase tracking-widest" style={{ color: "#C084FC", fontFamily: "var(--font-outfit), sans-serif", fontWeight: 500 }}>
-                — Témoignages
+            <motion.div variants={fadeUp} className="flex flex-col gap-4">
+              <p
+                style={{
+                  fontFamily: "var(--font-mono), monospace",
+                  fontSize: 11,
+                  fontWeight: 400,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  color: "#D4A853",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                }}
+              >
+                <span style={{ display: "inline-block", width: 20, height: 1, backgroundColor: "#D4A853" }} />
+                Témoignages
               </p>
-              <h2 style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 800, fontSize: "clamp(28px, 3.5vw, 44px)", letterSpacing: "-0.03em", color: "#F0E6FF" }}>
+              <h2
+                style={{
+                  fontFamily: "var(--font-cormorant), serif",
+                  fontWeight: 600,
+                  fontSize: "clamp(28px, 3.5vw, 44px)",
+                  letterSpacing: "-0.02em",
+                  color: "#1A1A18",
+                }}
+              >
                 Ce qu&apos;ils en disent
               </h2>
             </motion.div>
@@ -358,28 +424,62 @@ export default function ServicesPage() {
                 <motion.div
                   key={t.name}
                   variants={fadeUp}
-                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="p-7 rounded-2xl flex flex-col gap-5 transition-colors duration-200"
-                  style={{ backgroundColor: "#1A1028", border: "1px solid rgba(192,132,252,0.1)" }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(192,132,252,0.3)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(192,132,252,0.1)"; }}
+                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  className="flex flex-col gap-5 p-7 transition-all duration-300 cursor-default"
+                  style={{
+                    backgroundColor: "#E8DFC8",
+                    borderBottom: "3px solid transparent",
+                    borderRadius: 8,
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderBottomColor = "#D4A853"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderBottomColor = "transparent"; }}
                 >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-cormorant), serif",
+                      fontWeight: 600,
+                      fontSize: 48,
+                      color: "#D4A853",
+                      opacity: 0.6,
+                      lineHeight: 0.8,
+                    }}
+                  >
+                    &ldquo;
+                  </span>
                   <p
                     style={{
-                      fontFamily: "var(--font-outfit), sans-serif",
+                      fontFamily: "var(--font-cormorant), serif",
                       fontStyle: "italic",
                       fontWeight: 400,
-                      fontSize: 15,
-                      lineHeight: 1.7,
-                      color: "#C084FC",
+                      fontSize: 17,
+                      lineHeight: 1.6,
+                      color: "#1A1A18",
                       flex: 1,
                     }}
                   >
-                    &ldquo;{t.quote}&rdquo;
+                    {t.quote}
                   </p>
                   <div>
-                    <p style={{ fontFamily: "var(--font-outfit), sans-serif", fontWeight: 700, fontSize: 15, color: "#F0E6FF" }}>{t.name}</p>
-                    <p style={{ fontFamily: "var(--font-inter), sans-serif", fontWeight: 300, fontSize: 13, color: "#9B88B0" }}>{t.role}</p>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-jost), sans-serif",
+                        fontWeight: 500,
+                        fontSize: 14,
+                        color: "#1A1A18",
+                      }}
+                    >
+                      {t.name}
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-jost), sans-serif",
+                        fontWeight: 300,
+                        fontSize: 12,
+                        color: "#8A8070",
+                      }}
+                    >
+                      {t.role}
+                    </p>
                   </div>
                 </motion.div>
               ))}
